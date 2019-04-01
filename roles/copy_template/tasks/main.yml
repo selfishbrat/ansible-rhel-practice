@@ -1,9 +1,10 @@
 ---
 # tasks file for copy_template
-- name: Copy template file for {{ item.source }}
+- name: Copy template files
   template:
-    src: "{{ item.source }}"
-    dest: "{{ item.dest }}"
-    mode: "{{ item.mode }}"
+    src: "{{ template_item.source }}"
+    dest: "{{ template_item.dest }}"
+    mode: "{{ template_item.mode }}"
   with_items: "{{ templates_to_push_out }}"
-  
+  loop_control:
+    loop_var: template_item 

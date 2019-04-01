@@ -2,8 +2,9 @@
 # tasks file for copy_repo
 - name: Copy template file
   template:
-    src: "{{ item.source }}"
-    dest: "{{ item.dest }}"
-    mode: "{{ item.mode }}"
+    src: "{{ repo_item.source }}"
+    dest: "{{ repo_item.dest }}"
+    mode: "{{ repo_item.mode }}"
   with_items: "{{ repo_template }}"
-  
+  loop_control:
+    loop_var: repo_item 

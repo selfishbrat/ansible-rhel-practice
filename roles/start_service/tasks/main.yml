@@ -1,7 +1,9 @@
 ---
 # tasks file for start_service
-- name: Start service {{ item }}
+- name: Start service
   service:
-    name: "{{ item }}"
+    name: "{{ start_item }}"
     state: started
-  with_items: "{{ package_to_install }}"
+  with_items: "{{ package_to_start }}"
+  loop_control:
+    loop_var: start_item

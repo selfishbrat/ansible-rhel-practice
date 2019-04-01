@@ -1,20 +1,29 @@
 ---
-- name: configure environment
+- name: configure common to all
   hosts: all
   gather_facts: true
   become: yes
-
   tasks:
-    - name: Configure haproxy
-      include_role:
-        name: "{{ item }}"
-      with_items: "{{ role_order }}"
-      when: inventory_hostname in groups['frontends']
+  - name: Configure Repo
+    include_role:
+      name: copy_repo
 
-    - name: Configure apps
-      include_role:
-        name: "{{ item }}"
-      with_items: "{{ role_order }}"
-      when: inventory_hostname in groups['apps']
+- name: Configure loadbalancer
+  hosts: frontends
+  become: yes
+  tasks:
+  - name: Configure haproxy
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"
+
+- name: Configure App Servers
+  hosts: apps
+  become: yes
+  tasks:
+  - name: configure tomcat
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"
 
 

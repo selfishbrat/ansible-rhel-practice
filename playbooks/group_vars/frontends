@@ -2,16 +2,19 @@ package_to_install:
   - python2-httpie
   - haproxy
 
+package_to_start:
+  - haproxy
+
 repo_template: 
   - { source: 'open_three-tier-app.repo', dest: '/etc/yum.repos.d/open_three-tier-app.repo', mode: '0644' }
 
 templates_to_push_out:
-  - { source: 'haproxy.cjg.j2', dest: '/etc/haproxy/haproxy.cfg', mode: '0644' }
+  - { source: 'haproxy.cfg.j2', dest: '/etc/haproxy/haproxy.cfg', mode: '0644' }
 
 #create_file_or_dir_vars:
 
 role_order:
-  - copy_repo
+#  - copy_repo
   - install_and_enable_package
   - copy_template
   - start_service

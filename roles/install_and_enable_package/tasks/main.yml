@@ -1,11 +1,15 @@
 ---
 - name: Install package
   yum:
-    name: "{{ item }}"
+    name: "{{ install_item }}"
     state: latest
   with_items: "{{ package_to_install }}"
+  loop_control:
+    loop_var: install_item
 - name: Enable at boot
   service:
-    name: "{{ item }}"
+    name: "{{ enable_item }}"
     enabled: yes
-  with_items: "{{ package_to_install }}"
+  with_items: "{{ package_to_start }}"
+  loop_control:
+    loop_var: enable_item
