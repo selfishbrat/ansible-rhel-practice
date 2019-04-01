@@ -1,0 +1,6 @@
+---
+# tasks file for start_service
+- name: Start service {{ item }}
+  service:
+    name: {{ item }}
+    state: started

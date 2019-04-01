@@ -1,0 +1,16 @@
+package_to_install:
+  - postgresql
+
+repo_template:
+  - {{ source: open_three-tier-app.repo, dest: /etc/yum.repos.d/open_three-tier-app.repo, mode: 0644 }}
+
+#templates_to_push_out:
+#  - {{ source: open_three-tier-app.repo, dest: /etc/yum.repos.d/open_three-tier-app.repo, mode: 0644 }}
+
+#create_file_or_dir_vars:
+
+role_order:
+  - copy_repo
+  - install_and_enable_packages
+#  - initialize_db
+  - start_service

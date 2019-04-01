@@ -1,0 +1,9 @@
+---
+# tasks file for copy_template
+- name: Copy template file for {{ item.source }}
+  template:
+    src: templates/{{ item.source }}
+    dest: {{ item.dest }}
+    mode: {{ item.mode }}
+  with_items: {{ templates_to_push_out }}
+  

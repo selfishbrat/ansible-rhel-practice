@@ -1,0 +1,8 @@
+---
+# tasks file for create_file_or_dir
+- name: create file {{ item }}
+  file:
+    path: {{ item.path }}
+    state: {{ item.state }}
+  with_items: {{ create_file_or_dir_vars }}
+  
