@@ -1,6 +1,6 @@
 ---
 # tasks file for create_file_or_dir
-- name: create file or directory
+- name: "create files/directories for {{ host_group_name }}"
   file:
     path: "{{ filedir_item.path }}"
     state: "{{ filedir_item.state }}"

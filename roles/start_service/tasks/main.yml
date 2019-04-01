@@ -1,6 +1,6 @@
 ---
 # tasks file for start_service
-- name: Start service
+- name: "Start services for {{ host_group_name }}"
   service:
     name: "{{ start_item }}"
     state: started

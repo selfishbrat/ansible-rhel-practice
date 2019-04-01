@@ -1,3 +1,5 @@
+host_group_name: "DB Servers"
+
 package_to_install:
   - postgresql-server
 

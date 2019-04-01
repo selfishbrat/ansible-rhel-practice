@@ -1,6 +1,6 @@
 ---
 # tasks file for copy_repo
-- name: Copy template file
+- name: "Set up Repositories"
   template:
     src: "{{ repo_item.source }}"
     dest: "{{ repo_item.dest }}"

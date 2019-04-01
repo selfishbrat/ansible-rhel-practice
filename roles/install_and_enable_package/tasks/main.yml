@@ -1,12 +1,12 @@
 ---
-- name: Install package
+- name: "Install packages for {{ host_group_name }}"
   yum:
     name: "{{ install_item }}"
     state: latest
   with_items: "{{ package_to_install }}"
   loop_control:
     loop_var: install_item
-- name: Enable at boot
+- name: "Enable services at boot for {{ host_group_name }}"
   service:
     name: "{{ enable_item }}"
     enabled: yes

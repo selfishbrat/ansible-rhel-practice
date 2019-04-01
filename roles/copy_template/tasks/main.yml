@@ -1,6 +1,6 @@
 ---
 # tasks file for copy_template
-- name: Copy template files
+- name: "Set up Template files for {{ host_group_name }}"
   template:
     src: "{{ template_item.source }}"
     dest: "{{ template_item.dest }}"

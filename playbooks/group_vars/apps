@@ -1,3 +1,5 @@
+host_group_name: "App Servers"
+
 package_to_install:
   - tomcat
   - httpd
