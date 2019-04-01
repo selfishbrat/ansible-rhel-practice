@@ -1,2 +1,9 @@
 ---
 # tasks file for initialize_db
+- name: check for existence of initdb file
+  stat:
+    path: "{{ initdb_location }}"
+  register: initdb_exists
+- name: Create initdb file if it doesn't exist
+  shell: "postgresql-setup initdb"
+  when: initdb_exists.stat.isreg is not defined

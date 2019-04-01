@@ -27,3 +27,11 @@
     with_items: "{{ role_order }}"
 
 
+- name: Configure DB Servers
+  hosts: appdbs
+  become: yes
+  tasks:
+  - name: configure databases
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"

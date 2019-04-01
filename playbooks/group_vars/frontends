@@ -5,9 +5,6 @@ package_to_install:
 package_to_start:
   - haproxy
 
-repo_template: 
-  - { source: 'open_three-tier-app.repo', dest: '/etc/yum.repos.d/open_three-tier-app.repo', mode: '0644' }
-
 templates_to_push_out:
   - { source: 'haproxy.cfg.j2', dest: '/etc/haproxy/haproxy.cfg', mode: '0644' }
 
