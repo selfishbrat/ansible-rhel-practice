@@ -1,0 +1,17 @@
+---
+# tasks file for install_and_enable_package
+- name: install and enable {{ item }}
+  block:
+    - name: Install package {{ item }}
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items: "{{ package_to_install }}"
+    - name: Enable {{ item }} at boot
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items: "{{ package_to_install }}"
+
+		
+

@@ -1,0 +1,20 @@
+---
+- name: configure environment
+  hosts: all
+  gather_facts: true
+  become: yes
+
+  tasks:
+    - name: Configure haproxy
+      include_role:
+        name: "{{ item }}"
+      with_items: "{{ role_order }}"
+      when: inventory_hostname in groups['frontends']
+
+    - name: Configure apps
+      include_role:
+        name: "{{ item }}"
+      with_items: "{{ role_order }}"
+      when: inventory_hostname in groups['apps']
+
+
