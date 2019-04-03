@@ -1,0 +1,42 @@
+---
+- name: Gather variables
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - roles/osp_dynamicinv
+  tags:
+    - dynamicinv
+
+- name: Configure loadbalancer
+  hosts: frontends
+  become: yes
+  tasks:
+  - name: Configure haproxy
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"
+  tags:
+    - configure_lb
+
+- name: Configure App Servers
+  hosts: apps
+  become: yes
+  tasks:
+  - name: configure tomcat
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"
+  tags:
+    - configure_apps
+
+
+- name: Configure DB Servers
+  hosts: appdbs
+  become: yes
+  tasks:
+  - name: configure databases
+    include_role:
+      name: "{{ item }}"
+    with_items: "{{ role_order }}"
+  tags:
+    - configure_db

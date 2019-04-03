@@ -22,3 +22,5 @@ role_order:
   - create_file_or_dir
   - copy_template
   - start_service
+repo_template:
+  - { source: 'open_three-tier-app.repo', dest: '/etc/yum.repos.d/open_three-tier-app.repo', mode: '0644' }

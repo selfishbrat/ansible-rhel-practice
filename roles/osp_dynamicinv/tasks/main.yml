@@ -1,0 +1,15 @@
+---
+# tasks file for osp_dynamicinv
+- name: Create Dynamic Inventory
+  block:
+  - name: Gather OpenStack Instance Facts
+    os_server_facts:
+      cloud: "{{ cloud }}"
+    register: osp_gathered
+  - name: Generate inventory
+    add_host:
+      group: "{{ item.metadata.group }}"
+      name: "{{ item.public_v4 }}"
+    loop: "{{ osp_gathered.ansible_facts.openstack_servers }}"
+  delegate_to: "{{ chosen_jumphost }}"
+  

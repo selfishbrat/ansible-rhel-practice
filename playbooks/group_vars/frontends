@@ -1,7 +1,7 @@
 host_group_name: "Load Balancers"
 
 package_to_install:
-  - python2-httpie
+#  - python2-httpie
   - haproxy
 
 package_to_start:
@@ -17,3 +17,5 @@ role_order:
   - install_and_enable_package
   - copy_template
   - start_service
+repo_template:
+  - { source: 'open_three-tier-app.repo', dest: '/etc/yum.repos.d/open_three-tier-app.repo', mode: '0644' }

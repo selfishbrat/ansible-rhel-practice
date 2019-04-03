@@ -1,0 +1,13 @@
+---
+- name: test gathering instance facts
+  hosts: localhost
+  become: yes
+  roles:
+    - roles/osp_dynamicinv
+
+  tasks:
+    - name: Get public IPv4
+      debug:
+        msg: "{{ item.metadata.group }} {{ item.public_v4 }}"
+      loop: "{{ osp_gathered.ansible_facts.openstack_servers }}"
+

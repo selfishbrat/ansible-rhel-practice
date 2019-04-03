@@ -18,3 +18,5 @@ role_order:
   - start_service
 
 initdb_location: "/var/lib/pgsql/initdb.log"
+repo_template:
+  - { source: 'open_three-tier-app.repo', dest: '/etc/yum.repos.d/open_three-tier-app.repo', mode: '0644' }
